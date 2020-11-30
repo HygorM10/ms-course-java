@@ -1,5 +1,7 @@
 package com.hygor.hrpayroll.resources;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +16,15 @@ import com.hygor.hrpayroll.services.PaymentService;
 @RequestMapping(value = "/payments")
 public class PaymentResource {
 
+	private Logger logger = LoggerFactory.getLogger(PaymentResource.class);
+	
 	@Autowired
 	private PaymentService service;
 	
 	@GetMapping(value = "/{workerId}/days/{days}")
 	public ResponseEntity<Payment> getPayment(@PathVariable Long workerId, @PathVariable Integer days){
 		Payment payment = service.getPayment(workerId, days);
+		logger.info("Chamou rota worker.");
 		return ResponseEntity.ok(payment);
 	}
 }
