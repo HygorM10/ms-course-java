@@ -149,3 +149,7 @@ Acompanhar logs do container em execução
 ```
 docker logs -f <container-id>
 ```
+Parar instancia do container em execução
+```
+docker stop <container-id>
+```
